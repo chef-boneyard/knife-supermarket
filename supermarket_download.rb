@@ -1,4 +1,4 @@
-# Author:: Adam Jacob (<adam@opscode.com>)
+# Author:: Chris Webber (<cwebber@getchef.com>)
 # Copyright:: Copyright (c) 2009 Opscode, Inc.
 # License:: Apache License, Version 2.0
 #
