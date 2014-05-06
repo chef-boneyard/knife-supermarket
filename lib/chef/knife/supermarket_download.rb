@@ -27,9 +27,9 @@ class Chef
 
       option :supermarket_site,
         :short => '-m SUPERMARKET_SITE',
-        :long => '--supermarket_site SUPERMARKET_SITE',
+        :long => '--supermarket-site SUPERMARKET_SITE',
         :description => 'Supermarket Site',
-        :default => 'supermarket-staging.getchef.com',
+        :default => 'supermarket.getchef.com',
         :proc => Proc.new { |supermarket| Chef::Config[:knife][:supermarket_site] = supermarket }
 
       def cookbooks_api_url
