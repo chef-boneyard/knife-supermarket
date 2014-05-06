@@ -20,19 +20,16 @@ require 'chef/knife'
 
 class Chef
   class Knife
-    class Share < Knife::CookbookSiteShare
+    class SupermarketShare < Knife::CookbookSiteShare
 
       banner "knife supermarket share COOKBOOK CATEGORY (options)"
       category "supermarket"
 
-      option :supermarket_site,
-        :short => '-m SUPERMARKET_SITE',
-        :long => '--supermarket_site SUPERMARKET_SITE',
-        :description => 'Supermarket Site',
-        :default => 'supermarket-staging.getchef.com',
-        :proc => Proc.new { |supermarket| Chef::Config[:knife][:supermarket_site] = supermarket }
-
-      category "supermarket"
+      deps do
+        require 'chef/cookbook_loader'
+        require 'chef/cookbook_uploader'
+        require 'chef/cookbook_site_streaming_uploader'
+      end
 
       option :supermarket_site,
         :short => '-m SUPERMARKET_SITE',
