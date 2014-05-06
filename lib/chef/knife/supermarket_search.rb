@@ -31,10 +31,6 @@ class Chef
         :default => 'supermarket-staging.getchef.com',
         :proc => Proc.new { |supermarket| Chef::Config[:knife][:supermarket_site] = supermarket }
 
-      def run
-        output(search_cookbook(name_args[0]))
-      end
-
       def search_cookbook(query, items=10, start=0, cookbook_collection={})
         cookbooks_url = "http://#{config[:supermarket_site]}/api/v1/search?q=#{query}&items=#{items}&start=#{start}"
         cr = noauth_rest.get_rest(cookbooks_url)
