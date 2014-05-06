@@ -14,4 +14,5 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://github.com/cwebberOps/knife-supermarket'
   s.license       = 'Apache 2.0'
   s.require_paths = ["lib"]
+  s.add_dependency "chef", ">= 0.10.10"
 end
