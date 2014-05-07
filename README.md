@@ -28,7 +28,7 @@ It may be preferable to use have this setting default to another host. For that,
 
     knife[:supermarket_site] = 'franchise.somecompany.com'
 
-Now when you run `knife supermarket install mysql` it install the mysql cookbook from `franchise.somecompany.com`.
+Now when you run `knife supermarket install mysql` it will install the mysql cookbook from `franchise.somecompany.com`.
 
 ## Subcommands
 
