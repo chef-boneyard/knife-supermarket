@@ -6,11 +6,11 @@ This Knife Plugin is an easy way to switch between various supermarkets, the big
 
 If you are running [Chef-DK](http://www.getchef.com/downloads/chef-dk) you can install it by running:
 
-    $ chef gem install knife-openstack
+    $ chef gem install knife-supermarket
 
 Otherwise, this plugin is distributed as a Ruby Gem. To install it, run:
 
-    $ gem install knife-openstack
+    $ gem install knife-supermarket
 
 Depending on your system's configuration, you may need to run this command with root privileges.
 
