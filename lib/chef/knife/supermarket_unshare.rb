@@ -33,7 +33,7 @@ class Chef
         :short => '-m SUPERMARKET_SITE',
         :long => '--supermarket-site SUPERMARKET_SITE',
         :description => 'Supermarket Site',
-        :default => 'supermarket.getchef.com',
+        :default => 'https://supermarket.getchef.com',
         :proc => Proc.new { |supermarket| Chef::Config[:knife][:supermarket_site] = supermarket }
 
       def run
@@ -47,7 +47,7 @@ class Chef
         confirm "Do you really want to unshare the cookbook #{@cookbook_name}"
 
         begin
-          rest.delete_rest "http://#{config[:supermarket_site]}/api/v1/cookbooks/#{@name_args[0]}"
+          rest.delete_rest "#{config[:supermarket_site]}/api/v1/cookbooks/#{@name_args[0]}"
         rescue Net::HTTPServerException => e
           raise e unless e.message =~ /Forbidden/
           ui.error "Forbidden: You must be the maintainer of #{@cookbook_name} to unshare it."
