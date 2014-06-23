@@ -38,6 +38,12 @@ class Chef
         :default => 'https://supermarket.getchef.com',
         :proc => Proc.new { |supermarket| Chef::Config[:knife][:supermarket_site] = supermarket }
 
+      option :cookbook_path,
+        :short => "-o PATH:PATH",
+        :long => "--cookbook-path PATH:PATH",
+        :description => "A colon-separated path to look for cookbooks in",
+        :proc => lambda { |o| Chef::Config.cookbook_path = o.split(":") }
+
       def do_upload(cookbook_filename, cookbook_category, user_id, user_secret_filename)
          uri = "#{config[:supermarket_site]}/api/v1/cookbooks"
 
