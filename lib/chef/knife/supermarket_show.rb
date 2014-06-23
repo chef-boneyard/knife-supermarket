@@ -29,20 +29,20 @@ class Chef
         :short => '-m SUPERMARKET_SITE',
         :long => '--supermarket-site SUPERMARKET_SITE',
         :description => 'Supermarket Site',
-        :default => 'supermarket.getchef.com',
+        :default => 'https://supermarket.getchef.com',
         :proc => Proc.new { |supermarket| Chef::Config[:knife][:supermarket_site] = supermarket }
 
       def get_cookbook_data
         case @name_args.length
         when 1
-          noauth_rest.get_rest("http://#{config[:supermarket_site]}/api/v1/cookbooks/#{@name_args[0]}")
+          noauth_rest.get_rest("#{config[:supermarket_site]}/api/v1/cookbooks/#{@name_args[0]}")
         when 2
-          noauth_rest.get_rest("http://#{config[:supermarket_site]}/api/v1/cookbooks/#{@name_args[0]}/versions/#{name_args[1].gsub('.', '_')}")
+          noauth_rest.get_rest("#{config[:supermarket_site]}/api/v1/cookbooks/#{@name_args[0]}/versions/#{name_args[1].gsub('.', '_')}")
         end
       end
 
       def get_cookbook_list(items=10, start=0, cookbook_collection={})
-        cookbooks_url = "http://#{config[:supermarket_site]}/api/v1/cookbooks?items=#{items}&start=#{start}"
+        cookbooks_url = "#{config[:supermarket_site]}/api/v1/cookbooks?items=#{items}&start=#{start}"
         cr = noauth_rest.get_rest(cookbooks_url)
         cr["items"].each do |cookbook|
           cookbook_collection[cookbook["cookbook_name"]] = cookbook

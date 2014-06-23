@@ -29,11 +29,11 @@ class Chef
         :short => '-m SUPERMARKET_SITE',
         :long => '--supermarket-site SUPERMARKET_SITE',
         :description => 'Supermarket Site',
-        :default => 'supermarket.getchef.com',
+        :default => 'https://supermarket.getchef.com',
         :proc => Proc.new { |supermarket| Chef::Config[:knife][:supermarket_site] = supermarket }
 
       def cookbooks_api_url
-        "http://#{config[:supermarket_site]}/api/v1/cookbooks"
+        "#{config[:supermarket_site]}/api/v1/cookbooks"
       end
     end
   end
