@@ -22,7 +22,7 @@ class Chef
   class Knife
     class SupermarketShare < Knife::CookbookSiteShare
 
-      banner "knife supermarket share COOKBOOK CATEGORY (options)"
+      banner "knife supermarket share COOKBOOK (options)"
       category "supermarket"
 
       deps do
@@ -44,10 +44,26 @@ class Chef
         :description => "A colon-separated path to look for cookbooks in",
         :proc => lambda { |o| Chef::Config.cookbook_path = o.split(":") }
 
+      # since we subclass cookbook_site and it expects a category, pass a phantom empty category
+      # parameter before invoking Chef::Knife::CookbookSiteShare#run ...
+      # Tested on 11.16.4 and 12.0.3.
+      def run
+        @name_args << "" if @name_args.length == 1
+        super
+      end
       def do_upload(cookbook_filename, cookbook_category, user_id, user_secret_filename)
          uri = "#{config[:supermarket_site]}/api/v1/cookbooks"
 
-         category_string = { 'category'=>cookbook_category }.to_json
+         # Categories are optional both in knife cookbook site 
+         # (which this plugin seeks to replace) and on the
+         # Supermarket community site.  Best practice now
+         # seems to be to just omit the category entirely.
+         #
+         # see: 
+         # https://github.com/chef/supermarket/pull/915
+         # https://github.com/chef/chef/pull/2198
+         
+         category_string = { 'category'=>'' }.to_json
 
          http_resp = Chef::CookbookSiteStreamingUploader.post(uri, user_id, user_secret_filename, {
            :tarball => File.open(cookbook_filename),
