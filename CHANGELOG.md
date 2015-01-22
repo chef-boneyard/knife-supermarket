@@ -1,3 +1,6 @@
+## v0.2.1
+* Pass empty string for category
+
 ## v0.2.0
 * Add support for specifying --cookbook-path on `knife supermarket share`
 
