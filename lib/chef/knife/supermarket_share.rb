@@ -35,7 +35,7 @@ class Chef
         :short => '-m SUPERMARKET_SITE',
         :long => '--supermarket-site SUPERMARKET_SITE',
         :description => 'Supermarket Site',
-        :default => 'https://supermarket.getchef.com',
+        :default => 'https://supermarket.chef.io',
         :proc => Proc.new { |supermarket| Chef::Config[:knife][:supermarket_site] = supermarket }
 
       option :cookbook_path,
@@ -54,15 +54,15 @@ class Chef
       def do_upload(cookbook_filename, cookbook_category, user_id, user_secret_filename)
          uri = "#{config[:supermarket_site]}/api/v1/cookbooks"
 
-         # Categories are optional both in knife cookbook site 
+         # Categories are optional both in knife cookbook site
          # (which this plugin seeks to replace) and on the
          # Supermarket community site.  Best practice now
          # seems to be to just omit the category entirely.
          #
-         # see: 
+         # see:
          # https://github.com/chef/supermarket/pull/915
          # https://github.com/chef/chef/pull/2198
-         
+
          category_string = { 'category'=>'' }.to_json
 
          http_resp = Chef::CookbookSiteStreamingUploader.post(uri, user_id, user_secret_filename, {
