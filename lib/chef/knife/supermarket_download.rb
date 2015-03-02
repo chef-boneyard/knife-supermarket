@@ -1,4 +1,4 @@
-# 
+#
 # Author:: Christopher Webber (<cwebber@getchef.com>)
 # Copyright:: Copyright (c) 2014 Chef Software, Inc.
 # License:: Apache License, Version 2.0
@@ -29,7 +29,7 @@ class Chef
         :short => '-m SUPERMARKET_SITE',
         :long => '--supermarket-site SUPERMARKET_SITE',
         :description => 'Supermarket Site',
-        :default => 'https://supermarket.getchef.com',
+        :default => 'https://supermarket.chef.io',
         :proc => Proc.new { |supermarket| Chef::Config[:knife][:supermarket_site] = supermarket }
 
       def cookbooks_api_url

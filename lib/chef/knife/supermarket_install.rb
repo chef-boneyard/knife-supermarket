@@ -36,7 +36,7 @@ class Chef
         :short => '-m SUPERMARKET_SITE',
         :long => '--supermarket-site SUPERMARKET_SITE',
         :description => 'Supermarket Site',
-        :default => 'https://supermarket.getchef.com',
+        :default => 'https://supermarket.chef.io',
         :proc => Proc.new { |supermarket| Chef::Config[:knife][:supermarket_site] = supermarket }
 
       def download_cookbook_to(download_path)
