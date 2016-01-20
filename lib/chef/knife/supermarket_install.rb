@@ -17,16 +17,16 @@
 #
 
 require 'chef/knife'
-require 'shellwords'
 
 class Chef
   class Knife
     class SupermarketInstall < Knife::CookbookSiteInstall
+      # Handle the subclassing (knife doesn't do this :()
+      dependency_loaders.concat(superclass.dependency_loaders)
+      options.merge!(superclass.options)
 
       deps do
-        require 'chef/mixin/shell_out'
-        require 'chef/knife/core/cookbook_scm_repo'
-        require 'chef/cookbook/metadata'
+        require 'chef/knife/supermarket_download'
       end
 
       banner "knife supermarket install COOKBOOK [VERSION] (options)"
