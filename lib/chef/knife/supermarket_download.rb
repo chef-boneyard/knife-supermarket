@@ -31,7 +31,12 @@ class Chef
         :description => 'Supermarket Site',
         :default => 'https://supermarket.chef.io',
         :proc => Proc.new { |supermarket| Chef::Config[:knife][:supermarket_site] = supermarket }
-
+      
+      option :file,
+        :short => '-f FILE',
+        :long => '--file FILE',
+        :description => 'The filename to write to.'
+	
       def cookbooks_api_url
         "#{config[:supermarket_site]}/api/v1/cookbooks"
       end
