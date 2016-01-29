@@ -21,6 +21,9 @@ require 'chef/knife'
 class Chef
   class Knife
     class SupermarketList < Knife::CookbookSiteList
+      # Handle the subclassing (knife doesn't do this :()
+      dependency_loaders.concat(superclass.dependency_loaders)
+      options.merge!(superclass.options)
 
       banner "knife supermarket list (options)"
       category "supermarket"

@@ -21,13 +21,15 @@ require 'chef/knife'
 class Chef
   class Knife
     class SupermarketShare < Knife::CookbookSiteShare
+      # Handle the subclassing (knife doesn't do this :()
+      dependency_loaders.concat(superclass.dependency_loaders)
+      options.merge!(superclass.options)
 
       banner "knife supermarket share COOKBOOK (options)"
       category "supermarket"
 
       deps do
-        require 'chef/cookbook_loader'
-        require 'chef/cookbook_uploader'
+        require 'chef/json_compat'
         require 'chef/cookbook_site_streaming_uploader'
       end
 
