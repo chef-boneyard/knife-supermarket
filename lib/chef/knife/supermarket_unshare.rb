@@ -26,7 +26,7 @@ class Chef
         require 'chef/json_compat'
       end
 
-      banner "knife supermarket unshare COOKBOOK"
+      banner "knife supermarket unshare COOKBOOK [VERSION]"
       category "supermarket"
 
       option :supermarket_site,
@@ -44,10 +44,18 @@ class Chef
           exit 1
         end
 
-        confirm "Do you really want to unshare the cookbook #{@cookbook_name}"
+        case @name_args.length
+        when 1
+          confirm "Do you really want to unshare the cookbook #{@cookbook_name}"
+          uri = "#{config[:supermarket_site]}/api/v1/cookbooks/#{@name_args[0]}"
+        when 2
+          confirm "Do you really want to unshare the version #{@name_args[1]} of cookbook #{@cookbook_name}"
+          uri = "#{config[:supermarket_site]}/api/v1/cookbooks/#{@name_args[0]}/versions/#{@name_args[1].gsub('.', '_')}"
+        end
+
 
         begin
-          rest.delete_rest "#{config[:supermarket_site]}/api/v1/cookbooks/#{@name_args[0]}"
+          rest.delete_rest uri
         rescue Net::HTTPServerException => e
           raise e unless e.message =~ /Forbidden/
           ui.error "Forbidden: You must be the maintainer of #{@cookbook_name} to unshare it."
