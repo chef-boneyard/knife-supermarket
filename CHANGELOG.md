@@ -1,3 +1,12 @@
+## v0.2.4
+* Fix REST calls missed in v0.2.3 [chef/knife-supermarket#29]
+
+## v0.2.3
+* Fix REST calls to align with `knife cookbook site` [chef/knife-supermarket#28]
+
+## v0.2.2
+* Fix the inclusion of dependencies and options from parent classes of commands [chef/knife-supermarket#21]
+
 ## v0.2.1
 * Pass empty string for category
 
