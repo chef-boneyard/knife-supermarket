@@ -38,9 +38,9 @@ class Chef
       def get_cookbook_data
         case @name_args.length
         when 1
-          noauth_rest.get_rest("#{config[:supermarket_site]}/api/v1/cookbooks/#{@name_args[0]}")
+          noauth_rest.get("#{config[:supermarket_site]}/api/v1/cookbooks/#{@name_args[0]}")
         when 2
-          noauth_rest.get_rest("#{config[:supermarket_site]}/api/v1/cookbooks/#{@name_args[0]}/versions/#{name_args[1].gsub('.', '_')}")
+          noauth_rest.get("#{config[:supermarket_site]}/api/v1/cookbooks/#{@name_args[0]}/versions/#{name_args[1].gsub('.', '_')}")
         end
       end
 
