@@ -34,6 +34,9 @@ class Chef
 
       def run
         output(search_cookbook(name_args[0]))
+        Chef::Log.deprecation <<EOF
+The `knife-supermarket` gem has been deprecated and the `knife supermarket` subcommands have been moved in to core Chef. Please ensure you have Chef 12.12 or newer, and then uninstall this gem.
+EOF
       end
 
       def search_cookbook(query, items=10, start=0, cookbook_collection={})

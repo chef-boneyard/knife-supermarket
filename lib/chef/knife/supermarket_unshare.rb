@@ -37,6 +37,10 @@ class Chef
         :proc => Proc.new { |supermarket| Chef::Config[:knife][:supermarket_site] = supermarket }
 
       def run
+        Chef::Log.deprecation <<EOF
+The `knife-supermarket` gem has been deprecated and the `knife supermarket` subcommands have been moved in to core Chef. Please ensure you have Chef 12.12 or newer, and then uninstall this gem.
+EOF
+
         @cookbook_name = @name_args[0]
         if @cookbook_name.nil?
           show_usage

@@ -50,6 +50,9 @@ class Chef
       # parameter before invoking Chef::Knife::CookbookSiteShare#run ...
       # Tested on 11.16.4 and 12.0.3.
       def run
+        Chef::Log.deprecation <<EOF
+The `knife-supermarket` gem has been deprecated and the `knife supermarket` subcommands have been moved in to core Chef. Please ensure you have Chef 12.12 or newer, and then uninstall this gem.
+EOF
         @name_args << "" if @name_args.length == 1
         super
       end
