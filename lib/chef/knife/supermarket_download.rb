@@ -35,6 +35,13 @@ class Chef
         :default => 'https://supermarket.chef.io',
         :proc => Proc.new { |supermarket| Chef::Config[:knife][:supermarket_site] = supermarket }
 
+      def run
+        Chef::Log.deprecation <<EOF
+The `knife-supermarket` gem has been deprecated and the `knife supermarket` subcommands have been moved in to core Chef. Please ensure you have Chef 12.12 or newer, and then uninstall this gem.
+EOF
+        super
+      end
+
       def cookbooks_api_url
         "#{config[:supermarket_site]}/api/v1/cookbooks"
       end

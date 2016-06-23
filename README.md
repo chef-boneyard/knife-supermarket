@@ -1,5 +1,9 @@
 # knife-supermarket
 
+This Plugin is DEPRECATED: this feature has been moved into core Chef in
+versions greater than 12.11.18 and no longer requires a separate gem
+installation.
+
 This Knife Plugin is an easy way to switch between various supermarkets, the
 biggest of them being the Chef Community Site, located at
 [https://supermarket.chef.io](https://supermarket.chef.io). The `knife
